@@ -1,0 +1,31 @@
+# Architecture
+
+## Engine decision
+
+The slice uses a lightweight browser stack rather than Godot 4.x. Godot would become attractive for a larger simulation with authored scenes, navigation, many actors, and complex animation. For this milestone, its Web export size, cross-origin isolation considerations, export tooling, and mobile startup overhead would add risk without improving the central two-dimensional loop.
+
+HTML/CSS/Canvas provides faster iteration, immediate static hosting, small transfer size, direct touch support, and reliable `localStorage`. The world renderer and state systems remain modular enough to migrate or expand later. There are no runtime dependencies or package supply-chain requirements.
+
+## Runtime structure
+
+- `game.js`: bootstrap, input, save state, alchemy, UI, audio synthesis, animation loop, and procedural world renderer.
+- `data/recipes.json`: commutative recipe definitions, descriptions, categories, and optional world-effect identifiers.
+- `data/elements.json`: four primordial element definitions. Discovered element metadata is derived from recipes.
+- `styles.css`: parchment/brass responsive interface, modal presentation, and mobile layout.
+- `web/`: exact deployable copy.
+
+## Data architecture
+
+Recipes are normalized by sorting both ingredient names into a stable key. `A + B` and `B + A` therefore resolve identically. Gameplay scripts do not contain the recipe graph. Each recipe can declare a `worldEffect`, which is applied once on first discovery.
+
+## Save architecture
+
+One versioned JSON document is stored under `alchemy-island-v01` in `localStorage`. It contains discovered elements, known recipes, world effects, statistics, settings, player position, tutorial status, and finale state. Saves occur after experiments, setting changes, milestones, and every five seconds during play.
+
+## World evolution
+
+The canvas renderer draws a stable island each frame and conditionally layers transformation modules based on persisted world-effect IDs. This avoids scene replacement and makes the development of the island cumulative.
+
+## Deployment
+
+The `/web` directory is buildless static output. Host that directory. The game must be served over HTTP(S) because browsers block JSON `fetch` from `file://`. No special response headers are required.
