@@ -1,10 +1,11 @@
 (async()=>{'use strict';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const recipes=await fetch('data/recipes.json').then(r=>r.json());
-const seedElements=await fetch('data/elements.json').then(r=>r.json());
+const recipes=await fetch('data/recipes.json?v=030').then(r=>r.json());
+const seedElements=await fetch('data/elements.json?v=030').then(r=>r.json());
 const icons={Mud:'◒',Mist:'≋',Lava:'◉',Steam:'♨',Dust:'⁙',Stone:'⬟',Pond:'◯',Energy:'ϟ',Sand:'∴',Glass:'◇',Clay:'⬢',Brick:'▰',Soil:'▨',Plant:'♧',Tree:'♠',Wood:'▥',Reeds:'〽',Moss:'❧','Primordial Life':'✧',Fish:'><>',Creature:'♞',Insect:'✥',Human:'♙','Sharp Stone':'◢',Tool:'⚒',Plank:'▬',Charcoal:'●','Hot Stone':'◉',Pot:'∪',Wall:'▦',Shelter:'⌂','Campfire Base':'⌄',Campfire:'♨','Glass Pane':'▱',Rope:'§',Raft:'▤',Seeds:'⁘',Crops:'≋',Food:'◈','Cooked Fish':'⋈',Settler:'♟','Metal Ore':'✦',Metal:'⬡','Advanced Tool':'⚙',Electricity:'ϟ'};
-const colors={Nature:'#69a75f',Materials:'#a9784c',Life:'#d66f77',Tools:'#637f83',Structures:'#ae7544',Technology:'#bb8ee8',Primordial:'#64aeca'};
-const elements={...seedElements}; recipes.forEach(r=>elements[r.result]={icon:icons[r.result]||'✦',color:colors[r.category],category:r.category,description:r.text});
+const colors={Nature:'#69a75f',Materials:'#a9784c',Life:'#d66f77',Tools:'#637f83',Structures:'#ae7544',Technology:'#bb8ee8',Primordial:'#64aeca'},categoryIcons={Nature:'❧',Materials:'⬡',Life:'✤',Tools:'⚒',Structures:'⌂',Technology:'ϟ'};
+Object.assign(icons,{Cloud:'☁',Rain:'☂',Pollen:'⁘',Flower:'✿',Fruit:'●',Flour:'∴',Bread:'▰',Meal:'◉',Basket:'⌗','Fishing Rod':'⌁','Smoked Fish':'⋈',Bird:'⌁',Bee:'✥',Hive:'⬢',Herbivore:'♞',Ash:'⁙',Mortar:'◒',Foundation:'▣',Roof:'⌃',House:'⌂',Well:'⊙',Kiln:'♨',Ceramic:'◡',Wire:'〰',Battery:'▣',Lantern:'◈',Waterwheel:'⊕',Workshop:'⚙',Bridge:'═',Dock:'╦',Cart:'▣',Road:'═',Oasis:'◉',Grove:'♠',Herb:'❧',Medicine:'✚',Pulp:'◫',Paper:'▱',Map:'⌖',Magnet:'∩'});
+const elements={...seedElements}; recipes.forEach(r=>elements[r.result]={icon:icons[r.result]||categoryIcons[r.category]||'✦',color:colors[r.category],category:r.category,description:r.text});
 const key=(a,b)=>[a,b].sort().join('|'), recipeMap=new Map(recipes.map(r=>[key(r.a,r.b),r]));
 const TOTAL=recipes.length, SAVE='alchemy-island-v01'; let state, selected=[], activeCategory='All', journalCategory='All', running=false, last=0, toastTimer, audio;
 const defaults=()=>({discovered:['Air','Earth','Fire','Water'],known:[],effects:[],effectTimes:{},attempts:0,success:0,failed:0,pos:{x:0,y:155},settings:{sound:true,motion:false},finale:false,tutorial:true});
@@ -32,7 +33,11 @@ const landmarks=[
 {id:'shelter',effect:'shelter',x:65,y:-155,icon:'⌂',name:'THE SHELTER',text:'Wood, brick, and intention have made the island feel like home.'},
 {id:'crops',effect:'crops',x:205,y:-95,icon:'≋',name:'THE FARM',text:'Ordered rows of green promise that tomorrow will have enough.'},
 {id:'raft',effect:'raft',x:-430,y:175,icon:'▤',name:'THE RAFT',text:'Rope binds timber into possibility. Beyond the surf, another shore may be waiting.'},
-{id:'electricity',effect:'electricity',x:110,y:-55,icon:'ϟ',name:'THE FIRST LIGHT',text:'A fragile current crosses the wire. For one bright moment, night obeys.'}
+{id:'electricity',effect:'electricity',x:110,y:-55,icon:'ϟ',name:'THE FIRST LIGHT',text:'A fragile current crosses the wire. For one bright moment, night obeys.'},
+{id:'house',effect:'house',x:-120,y:-155,icon:'⌂',name:'THE FIRST HOUSE',text:'A window, a roof, and a door: the settlement now expects a future.'},
+{id:'well',effect:'well',x:245,y:35,icon:'⊙',name:'THE WELL',text:'Cool water waits beneath the stone rim, close to every home.'},
+{id:'workshop',effect:'workshop',x:245,y:-150,icon:'⚙',name:'THE WORKSHOP',text:'Tools now have a home of their own. New ideas arrive with every hammer blow.'},
+{id:'dock',effect:'dock',x:-410,y:100,icon:'╦',name:'THE DOCK',text:'The island has built its first deliberate welcome for the sea.'}
 ];
 function effectProgress(id){const born=state.effectTimes?.[id];if(!born||state.settings.motion)return 1;return Math.min(1,(Date.now()-born)/1800)}
 function revealed(id,draw){const p=effectProgress(id);ctx.save();ctx.globalAlpha=.15+.85*p;ctx.translate(0,(1-p)*28);draw();ctx.restore()}
@@ -53,8 +58,22 @@ if(state.effects.includes('shelter'))revealed('shelter',()=>hut(65,-155));
 if(state.effects.includes('campfire'))revealed('campfire',()=>campfire(-30,75,t));
 if(state.effects.includes('raft'))revealed('raft',()=>raft(-430,175,t));
 if(state.effects.includes('human'))revealed('human',()=>person(130,35,'#d66f77',t));
-if(state.effects.includes('settler'))revealed('settler',()=>person(165,65,'#e7b556',t+900));
+if(state.effects.includes('settler'))revealed('settler',()=>person(120+Math.sin(t/2100)*85,20+Math.cos(t/1700)*45,'#e7b556',t+900));
 if(state.effects.includes('electricity'))revealed('electricity',()=>generator(110,-55,t));
+if(state.effects.includes('flowers'))revealed('flowers',()=>flowers(t));
+if(state.effects.includes('birds'))birds(t);
+if(state.effects.includes('hive')){ellipse(-210,-98,15,20,'#d9a83e','#65451f');bees(t)}
+if(state.effects.includes('herbivore'))herbivore(-265,105,t);
+if(state.effects.includes('grove'))revealed('grove',()=>{for(let i=0;i<5;i++)tree(-365+i*38,-55+(i%2)*20,t,i)});
+if(state.effects.includes('house'))revealed('house',()=>house(-120,-155));
+if(state.effects.includes('well'))revealed('well',()=>well(245,35));
+if(state.effects.includes('kiln'))revealed('kiln',()=>kiln(150,120,t));
+if(state.effects.includes('waterwheel'))revealed('waterwheel',()=>waterwheel(-180,82,t));
+if(state.effects.includes('workshop'))revealed('workshop',()=>workshop(245,-150));
+if(state.effects.includes('bridge'))revealed('bridge',()=>bridge(-205,85));
+if(state.effects.includes('dock'))revealed('dock',()=>dock(-410,100));
+if(state.effects.includes('road'))revealed('road',()=>road());
+if(state.discovered.includes('Fish'))fish(t);
 person(state.pos.x,state.pos.y,'#e9d0a4',t,true);particles.forEach((p,i)=>{p.y-=p.v;p.life--;ctx.globalAlpha=Math.max(0,p.life/40);ellipse(p.x,p.y,p.s,p.s,p.c);ctx.globalAlpha=1;if(p.life<=0)particles.splice(i,1)});ctx.restore()}
 function tree(x,y,t,i){ctx.fillStyle='#6c4328';ctx.fillRect(x-5,y,10,35);ellipse(x,y-8,25,29,i%2?'#2f7e4f':'#3f9255');ellipse(x-13,y-4,14,17,'#55a862');ellipse(x+14,y-5,14,18,'#4a9e5a')}
 function hut(x,y){ctx.fillStyle='#8d562d';ctx.fillRect(x-48,y-10,96,65);ctx.fillStyle='#d59d50';ctx.beginPath();ctx.moveTo(x-62,y);ctx.lineTo(x,y-55);ctx.lineTo(x+62,y);ctx.fill();ctx.fillStyle='#382c25';ctx.fillRect(x-12,y+20,24,35);ctx.fillStyle='#87d5d2';ctx.fillRect(x+23,y+12,18,15)}
@@ -62,6 +81,19 @@ function farm(x,y){ctx.fillStyle='#765631';ctx.fillRect(x-70,y-42,140,84);for(le
 function campfire(x,y,t){ctx.fillStyle='#5a4130';for(let a=0;a<6.3;a+=1.05)ellipse(x+Math.cos(a)*18,y+Math.sin(a)*9,7,5,'#6f6b5c');ctx.fillStyle='#ffbf44';ctx.beginPath();ctx.moveTo(x-10,y);ctx.quadraticCurveTo(x-18,y-30,x,y-43-Math.sin(t/100)*5);ctx.quadraticCurveTo(x+18,y-25,x+10,y);ctx.fill();ellipse(x,y-3,8,15,'#f26b3d')}
 function raft(x,y,t){ctx.save();ctx.translate(x,y+Math.sin(t/500)*4);ctx.rotate(-.12);for(let i=0;i<5;i++){ctx.fillStyle='#82512f';ctx.fillRect(-35+i*15,-17,12,45)}ctx.fillStyle='#dbc88f';ctx.beginPath();ctx.moveTo(0,-65);ctx.lineTo(0,-15);ctx.lineTo(35,-20);ctx.closePath();ctx.fill();ctx.restore()}
 function generator(x,y,t){ctx.strokeStyle='#3c2d24';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(x,y);ctx.quadraticCurveTo(x+80,y+50,x+145,y-5);ctx.stroke();ctx.fillStyle='#82643d';ctx.fillRect(x-22,y-20,44,42);ctx.fillStyle='#d8b94f';ctx.beginPath();ctx.arc(x,y,13,0,6.3);ctx.fill();ctx.save();ctx.translate(x,y);ctx.rotate(t/180);ctx.strokeStyle='#394d4d';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(-14,0);ctx.lineTo(14,0);ctx.moveTo(0,-14);ctx.lineTo(0,14);ctx.stroke();ctx.restore();ctx.strokeStyle='#694923';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(x+145,y);ctx.lineTo(x+145,y-55);ctx.stroke();ctx.fillStyle=Math.sin(t/130)>-.3?'#fff7a0':'#534d39';ctx.shadowBlur=25;ctx.shadowColor='#fff28a';ellipse(x+145,y-62,12,16,ctx.fillStyle);ctx.shadowBlur=0}
+function flowers(t){for(let i=0;i<20;i++){let a=rng(i+220)*6.28,r=90+rng(i+250)*280,x=Math.cos(a)*r,y=Math.sin(a)*r*.62;ctx.fillStyle=['#f297a8','#ffe17d','#a68ee8'][i%3];ctx.beginPath();ctx.arc(x,y,3+Math.sin(t/400+i),0,6.3);ctx.fill()}}
+function birds(t){ctx.strokeStyle='#f4ebd0';ctx.lineWidth=3;for(let i=0;i<4;i++){let x=((t*.035+i*240)%1100)-550,y=-245+i*18;ctx.beginPath();ctx.arc(x-5,y,6,3.6,6);ctx.arc(x+7,y,6,3.3,5.7);ctx.stroke()}}
+function bees(t){ctx.fillStyle='#f4c74f';for(let i=0;i<7;i++){let a=t/500+i,x=-210+Math.cos(a*1.7)*28,y=-98+Math.sin(a*2.1)*18;ellipse(x,y,3,2,'#f4c74f')}}
+function fish(t){for(let i=0;i<4;i++){let x=-210+Math.sin(t/700+i)*28,y=85+Math.cos(t/850+i*2)*10;ctx.fillStyle='#e9d68b';ctx.beginPath();ctx.moveTo(x+6,y);ctx.lineTo(x-5,y-3);ctx.lineTo(x-5,y+3);ctx.fill()}}
+function herbivore(x,y,t){ctx.fillStyle='#c9a26b';ctx.fillRect(x-15,y-12,30,18);ellipse(x+18,y-9,9,8,'#c9a26b');ctx.strokeStyle='#4a392d';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x-9,y+5);ctx.lineTo(x-10,y+17);ctx.moveTo(x+8,y+5);ctx.lineTo(x+9,y+17);ctx.stroke()}
+function house(x,y){ctx.fillStyle='#b77b45';ctx.fillRect(x-42,y-8,84,58);ctx.fillStyle='#763f2c';ctx.beginPath();ctx.moveTo(x-54,y);ctx.lineTo(x,y-45);ctx.lineTo(x+54,y);ctx.fill();ctx.fillStyle='#7dc5c5';ctx.fillRect(x-28,y+10,19,18);ctx.fillRect(x+10,y+10,19,18);ctx.fillStyle='#4c3528';ctx.fillRect(x-8,y+22,16,28)}
+function well(x,y){ellipse(x,y,25,13,'#727969','#d6c48d');ellipse(x,y-2,17,7,'#286e7b');ctx.strokeStyle='#68452c';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(x-20,y);ctx.lineTo(x-20,y-35);ctx.lineTo(x+20,y-35);ctx.lineTo(x+20,y);ctx.stroke()}
+function kiln(x,y,t){ctx.fillStyle='#a85837';ctx.beginPath();ctx.arc(x,y,26,Math.PI,0);ctx.fill();ctx.fillRect(x-26,y,52,25);ellipse(x,y+13,10,12,'#40251e');ctx.fillStyle='#ff8b45';ctx.beginPath();ctx.arc(x,y+15,5+Math.sin(t/150)*2,0,6.3);ctx.fill()}
+function waterwheel(x,y,t){ctx.save();ctx.translate(x,y);ctx.rotate(t/450);ctx.strokeStyle='#81532f';ctx.lineWidth=5;ctx.beginPath();ctx.arc(0,0,25,0,6.3);for(let a=0;a<6.3;a+=.78){ctx.moveTo(0,0);ctx.lineTo(Math.cos(a)*25,Math.sin(a)*25)}ctx.stroke();ctx.restore()}
+function workshop(x,y){ctx.fillStyle='#6d5d48';ctx.fillRect(x-45,y-5,90,55);ctx.fillStyle='#4a4035';ctx.beginPath();ctx.moveTo(x-55,y);ctx.lineTo(x,y-36);ctx.lineTo(x+55,y);ctx.fill();ctx.fillStyle='#d8a945';ctx.fillRect(x-12,y+12,24,20)}
+function bridge(x,y){ctx.strokeStyle='#865631';ctx.lineWidth=9;for(let i=-35;i<=35;i+=12){ctx.beginPath();ctx.moveTo(x+i,y-18);ctx.lineTo(x+i,y+18);ctx.stroke()}}
+function dock(x,y){ctx.fillStyle='#81522f';for(let i=0;i<5;i++)ctx.fillRect(x-30+i*15,y-8,12,75)}
+function road(){ctx.strokeStyle='#aa986fbb';ctx.lineWidth=12;ctx.beginPath();ctx.moveTo(-280,145);ctx.quadraticCurveTo(0,105,260,92);ctx.stroke()}
 function person(x,y,c,t,player=false){ctx.save();ctx.translate(x,y);let bob=Math.sin(t/180)*2;ellipse(0,-19+bob,9,10,'#c98c62');ctx.fillStyle=c;ctx.fillRect(-8,-10+bob,16,25);ctx.strokeStyle='#3f3a35';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(-4,14+bob);ctx.lineTo(-7,27);ctx.moveTo(4,14+bob);ctx.lineTo(7,27);ctx.stroke();if(player&&state.effects.includes('advanced_tool')){ctx.strokeStyle='#d6d9cc';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(10,-4);ctx.lineTo(20,20);ctx.stroke();ctx.fillStyle='#adb8b6';ctx.fillRect(7,-8,12,7)}ctx.restore()}
 function spawnBurst(){for(let i=0;i<28;i++)particles.push({x:state.pos.x+(rng(i)-.5)*60,y:state.pos.y+(rng(i+30)-.5)*35,v:.4+rng(i+5)*1.4,life:25+rng(i+20)*35,s:2+rng(i)*3,c:['#ffe580','#8de2bf','#fff'][i%3]})}
 function update(dt){let x=(keys.ArrowRight||keys.d?1:0)-(keys.ArrowLeft||keys.a?1:0)+joy.x,y=(keys.ArrowDown||keys.s?1:0)-(keys.ArrowUp||keys.w?1:0)+joy.y;if(x||y){let m=Math.hypot(x,y);state.pos.x+=x/m*dt*.17;state.pos.y+=y/m*dt*.17;let q=(state.pos.x/460)**2+(state.pos.y/280)**2;if(q>1){state.pos.x*=.985;state.pos.y*=.985}}const found=landmarks.find(l=>(!l.effect||state.effects.includes(l.effect))&&(!l.requires||state.discovered.includes(l.requires))&&Math.hypot(state.pos.x-l.x,state.pos.y-l.y)<80)||null;if(found?.id!==nearby?.id){nearby=found;const b=$('#interactBtn');b.classList.toggle('hidden',!nearby);if(nearby)b.textContent=`${matchMedia('(pointer:coarse)').matches?'TAP':'E'} · INSPECT ${nearby.name.replace('THE ','')}`}}

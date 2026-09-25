@@ -3,7 +3,7 @@
 ## Included
 
 - One top-down animated island and controllable castaway
-- Four primordial elements and 45 data-driven recipes
+- Four primordial elements and 85 data-driven recipes
 - Click/tap combination interface with commutative matching
 - Seven journal categories, completion tracking, descriptions, and statistics
 - Nine persistent island transformations
@@ -16,6 +16,8 @@
 - Animated world transformations and six inspectable landmarks
 - Progressive experiment hints and visible save confirmation
 - Installable offline-capable web app
+- Ambient birds, fish, bees, a wandering settler, and a grazing animal
+- Eight additional visible settlement upgrades
 
 ## Explicitly excluded
 

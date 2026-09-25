@@ -1,6 +1,6 @@
-# Alchemy Island — The Living Island v0.2.1
+# Alchemy Island — Signs of Life v0.3.0
 
-A complete, static browser-game proof of concept about combining four primordial elements and watching a lonely island grow into the beginnings of civilization.
+A complete, static browser game about combining four primordial elements across 85 discoveries and watching a lonely island grow into the beginnings of civilization.
 
 ## Play online
 

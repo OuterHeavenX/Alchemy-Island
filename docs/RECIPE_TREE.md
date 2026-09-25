@@ -18,4 +18,8 @@ Stone + Stone → Sharp Stone; Sharp Stone + Wood → Tool; Wood + Tool → Plan
 
 Plant + Tool → Seeds; Seeds + Soil → Crops; Crops + Water → Food; Fish + Fire → Cooked Fish; Food + Human → Settler; Charcoal + Stone → Metal Ore; Metal Ore + Fire → Metal; Metal + Tool → Advanced Tool; Energy + Metal → Electricity.
 
-Total discoveries: **45** (plus four starting elements).
+## Signs of Life expansion
+
+Air + Mist → Cloud; Cloud + Water → Rain; Air + Plant → Pollen; Plant + Pollen → Flower; Flower + Tree → Fruit; Crops + Stone → Flour; Flour + Fire → Bread; Food + Pot → Meal; Reeds + Rope → Basket; Rope + Tool → Fishing Rod; Cooked Fish + Charcoal → Smoked Fish; Air + Creature → Bird; Flower + Insect → Bee; Bee + Tree → Hive; Creature + Plant → Herbivore; Fire + Plant → Ash; Sand + Water → Mortar; Mortar + Stone → Foundation; Reeds + Wood → Roof; Glass Pane + Shelter → House; Stone + Water → Well; Campfire + Clay → Kiln; Clay + Hot Stone → Ceramic; Advanced Tool + Metal → Wire; Electricity + Pot → Battery; Campfire + Glass → Lantern; Pond + Wood → Waterwheel; Advanced Tool + Shelter → Workshop; Plank + Rope → Bridge; Plank + Raft → Dock; Advanced Tool + Plank → Cart; Stone + Tool → Road; Pond + Sand → Oasis; Tree + Tree → Grove; Moss + Plant → Herb; Herb + Pot → Medicine; Reeds + Water → Pulp; Hot Stone + Pulp → Paper; Charcoal + Paper → Map; Advanced Tool + Energy → Magnet.
+
+Total discoveries: **85** (plus four starting elements).
