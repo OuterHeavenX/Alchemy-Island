@@ -1,4 +1,4 @@
-# Alchemy Island — The Living Island v0.2.0
+# Alchemy Island — The Living Island v0.2.1
 
 A complete, static browser-game proof of concept about combining four primordial elements and watching a lonely island grow into the beginnings of civilization.
 
