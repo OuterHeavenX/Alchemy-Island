@@ -1,4 +1,4 @@
-# Alchemy Island — Vertical Slice v0.1.0
+# Alchemy Island — The Living Island v0.2.0
 
 A complete, static browser-game proof of concept about combining four primordial elements and watching a lonely island grow into the beginnings of civilization.
 
@@ -25,6 +25,8 @@ Open the local URL printed by `serve` (usually `http://localhost:3000`). No buil
 - Journal: the top-right Journal button
 
 Progress saves automatically in browser `localStorage`. Use Settings → Reset Save to erase it.
+
+Approach a discovered landmark and press **E** (or tap the contextual Inspect button) to learn how it changed the island. The game can also be installed from supported browsers and continues working offline after its first successful load.
 
 ## Deploy
 

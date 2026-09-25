@@ -13,6 +13,9 @@
 - Guided first recipe and freeform progression thereafter
 - Electricity finale with continued exploration
 - Responsive desktop and mobile presentation
+- Animated world transformations and six inspectable landmarks
+- Progressive experiment hints and visible save confirmation
+- Installable offline-capable web app
 
 ## Explicitly excluded
 
