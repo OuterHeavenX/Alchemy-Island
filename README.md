@@ -1,4 +1,4 @@
-# Alchemy Island — The Living Settlement v0.8.0
+# Alchemy Island — Responsive Input v0.8.1
 
 A complete, static browser game about combining four primordial elements across 1,000 discoveries and watching a lonely island grow into the beginnings of civilization.
 
@@ -33,6 +33,8 @@ Progress saves automatically in browser `localStorage`. Use Settings → Reset S
 Tap or click a discovered landmark to learn how it changed the island. The game can also be installed from supported browsers and continues working offline after its first successful load.
 
 The Living Settlement deepens the autonomous miniature world with visible building stages, settler jobs and routines, naturally strengthening footpaths, crop cycles, night lights and chimney smoke, shoreline boats, richer structure/resident inspection, camera bookmarks and discovery flyovers, a development timeline, a Village Founded milestone, and individually numbered discovery cards. The 1,000-recipe Thousand Paths catalog remains active.
+
+Responsive Input v0.8.1 adds immediate mobile tap feedback, semantic element buttons, delegated input handling, batched journal rendering, and a lighter mobile canvas workload.
 
 ## Deploy
 
