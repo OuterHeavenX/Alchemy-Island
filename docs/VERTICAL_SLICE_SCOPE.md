@@ -27,3 +27,7 @@ This project stops at the proof-of-concept milestone.
 # v0.4.0 — The Living Island
 
 This polish milestone deepens the existing vertical slice without expanding the recipe count. It adds day/night atmosphere, weather and wildlife motion, animated player movement, a landmark map, stronger world reveals, and improved installed-app update behavior. Population simulation, production chains, and settlement management remain future work.
+
+# v0.5.0 — First Settlement
+
+This milestone turns the visible structures into a compact community loop. The slice supports up to six inhabitants, four readable settlement resources, automatic work routines tied to discovered landmarks, population growth, night-time campfire gatherings, a settlement overview, and a sustainability milestone. It intentionally excludes manual production chains, construction grids, complex needs, and city-scale simulation.

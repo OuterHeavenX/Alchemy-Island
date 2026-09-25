@@ -32,3 +32,7 @@ The `/web` directory is buildless static output. Host that directory. The game m
 # Living World layer (v0.4)
 
 The Canvas renderer derives atmosphere from a lightweight client-side time cycle rather than storing thousands of simulation ticks. Sun, moon, stars, weather, fireflies, player gait, and construction reveals are deterministic render effects. The landmark map is generated from the same saved `effects` and `discovered` state as the physical island, so it cannot reveal structures the player has not created. Older saves are migrated by merging new setting defaults during load.
+
+# Settlement layer (v0.5)
+
+Settlement state is a small saved object containing population, four bounded resources, the last simulation timestamp, and milestone completion. Ten-second deterministic ticks derive production from existing discoveries and world effects; returning players receive a bounded catch-up rather than an unbounded offline simulation. Settler motion is visual and route-based, avoiding pathfinding or agent-AI cost. The painted island base is a single compressed browser asset beneath the existing dynamic objects.

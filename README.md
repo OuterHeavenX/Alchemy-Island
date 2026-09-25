@@ -1,4 +1,4 @@
-# Alchemy Island — The Living Island v0.4.0
+# Alchemy Island — First Settlement v0.5.0
 
 A complete, static browser game about combining four primordial elements across 85 discoveries and watching a lonely island grow into the beginnings of civilization.
 
@@ -30,7 +30,7 @@ Progress saves automatically in browser `localStorage`. Use Settings → Reset S
 
 Approach a discovered landmark and press **E** (or tap the contextual Inspect button) to learn how it changed the island. The game can also be installed from supported browsers and continues working offline after its first successful load.
 
-The Living Island update adds a continuous day/night atmosphere, sun and moon travel, stars, weather, fireflies, animated walking, richer construction reveals, and a map that grows with the settlement.
+First Settlement adds a painted island, roaming inhabitants, food/water/timber/spirit resources, visible daily work routines, population growth, a settlement overview, and a sustainability milestone. The Living Island systems—day/night atmosphere, weather, fireflies, animated walking, construction reveals, and the landmark map—remain active.
 
 ## Deploy
 
