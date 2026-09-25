@@ -2,6 +2,10 @@
 
 A complete, static browser-game proof of concept about combining four primordial elements and watching a lonely island grow into the beginnings of civilization.
 
+## Play online
+
+**[Play Alchemy Island](https://outerheavenx.github.io/Alchemy-Island/)**
+
 ## Play locally
 
 Opening `index.html` directly is not supported because the data-driven recipe files are loaded with `fetch`.
