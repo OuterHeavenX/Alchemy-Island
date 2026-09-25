@@ -24,3 +24,6 @@
 Combat, enemies, hunger, health, inventories, crafting quantities, procedural continents, complex NPC AI, accounts, servers, multiplayer, achievements, cloud save, towns, industrial systems, and post-electric technology.
 
 This project stops at the proof-of-concept milestone.
+# v0.4.0 — The Living Island
+
+This polish milestone deepens the existing vertical slice without expanding the recipe count. It adds day/night atmosphere, weather and wildlife motion, animated player movement, a landmark map, stronger world reveals, and improved installed-app update behavior. Population simulation, production chains, and settlement management remain future work.

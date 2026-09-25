@@ -1,4 +1,4 @@
-# Alchemy Island — Signs of Life v0.3.1
+# Alchemy Island — The Living Island v0.4.0
 
 A complete, static browser game about combining four primordial elements across 85 discoveries and watching a lonely island grow into the beginnings of civilization.
 
@@ -23,10 +23,14 @@ Open the local URL printed by `serve` (usually `http://localhost:3000`). No buil
 - Mobile: on-screen joystick
 - Alchemy: click/tap one discovered element, then a second, then **Combine**
 - Journal: the top-right Journal button
+- Island map: chart discovered landmarks and your current position
+- Day/night cycle: enabled by default and adjustable in Settings
 
 Progress saves automatically in browser `localStorage`. Use Settings → Reset Save to erase it.
 
 Approach a discovered landmark and press **E** (or tap the contextual Inspect button) to learn how it changed the island. The game can also be installed from supported browsers and continues working offline after its first successful load.
+
+The Living Island update adds a continuous day/night atmosphere, sun and moon travel, stars, weather, fireflies, animated walking, richer construction reveals, and a map that grows with the settlement.
 
 ## Deploy
 

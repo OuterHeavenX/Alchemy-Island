@@ -29,3 +29,6 @@ The canvas renderer draws a stable island each frame and conditionally layers tr
 ## Deployment
 
 The `/web` directory is buildless static output. Host that directory. The game must be served over HTTP(S) because browsers block JSON `fetch` from `file://`. No special response headers are required.
+# Living World layer (v0.4)
+
+The Canvas renderer derives atmosphere from a lightweight client-side time cycle rather than storing thousands of simulation ticks. Sun, moon, stars, weather, fireflies, player gait, and construction reveals are deterministic render effects. The landmark map is generated from the same saved `effects` and `discovered` state as the physical island, so it cannot reveal structures the player has not created. Older saves are migrated by merging new setting defaults during load.
