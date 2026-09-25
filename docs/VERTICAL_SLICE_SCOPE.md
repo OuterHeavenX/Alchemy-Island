@@ -35,3 +35,7 @@ This milestone turns the visible structures into a compact community loop. The s
 # v0.6.0 — Thousand Paths
 
 At the player's explicit request, this milestone begins Phase 2 and supersedes the original 85-recipe vertical-slice ceiling. The original handcrafted tree remains intact and 915 deterministic, named, dependency-reachable recipes extend it to exactly 1,000. Search, category filtering, and a substantially larger mobile alchemy workspace keep the expanded library usable.
+
+# v0.7.0 — Living Diorama
+
+This milestone replaces direct character control with a spectator camera. The world progresses through discoveries and autonomous settlement behavior; the player pans and zooms across a larger island/ocean view and taps revealed landmarks for contextual information. It does not add manual city-building, unit orders, or simulation micromanagement.

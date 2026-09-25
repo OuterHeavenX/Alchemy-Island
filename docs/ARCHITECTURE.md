@@ -20,7 +20,7 @@ Recipes are normalized by sorting both ingredient names into a stable key. `A + 
 
 ## Save architecture
 
-One versioned JSON document is stored under `alchemy-island-v01` in `localStorage`. It contains discovered elements, known recipes, world effects, statistics, settings, player position, tutorial status, and finale state. Saves occur after experiments, setting changes, milestones, and every five seconds during play.
+One versioned JSON document is stored under `alchemy-island-v01` in `localStorage`. It contains discovered elements, known recipes, world effects, statistics, settings, settlement state, tutorial status, and finale state. Legacy player-position data may remain in older saves but is ignored by the independent spectator camera. Saves occur after experiments, setting changes, milestones, and every five seconds during play.
 
 ## World evolution
 
@@ -40,3 +40,7 @@ Settlement state is a small saved object containing population, four bounded res
 # Expanded recipe catalog (v0.6)
 
 The first 85 recipes remain the handcrafted progression foundation. `scripts/generate_expansion.mjs` deterministically produces 915 additional named discoveries with unique commutative ingredient pairs. The generated JSON is committed so the browser has no runtime generation cost. Validation requires exactly 1,000 unique pairs, 1,000 unique results, and complete reachability from the four primordial elements.
+
+# Living diorama camera (v0.7)
+
+The Canvas renderer now uses an independent camera `{x, y, zoom}` rather than centering the world on a player avatar. Pointer Events provide one-finger/mouse panning and two-finger pinch zoom; wheel and dedicated camera buttons cover desktop and accessible tap controls. Screen coordinates are inverted through the current Canvas transform for direct landmark hit-testing. Settlement inhabitants follow autonomous routes, while discoveries continue to reveal structures and environmental effects without requiring character movement.
