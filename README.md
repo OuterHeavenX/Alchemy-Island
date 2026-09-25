@@ -1,4 +1,4 @@
-# Alchemy Island — Living Diorama v0.7.0
+# Alchemy Island — The Living Settlement v0.8.0
 
 A complete, static browser game about combining four primordial elements across 1,000 discoveries and watching a lonely island grow into the beginnings of civilization.
 
@@ -32,7 +32,7 @@ Progress saves automatically in browser `localStorage`. Use Settings → Reset S
 
 Tap or click a discovered landmark to learn how it changed the island. The game can also be installed from supported browsers and continues working offline after its first successful load.
 
-Living Diorama removes direct avatar control so the island can be watched as an autonomous miniature world. The enlarged island sits inside a pannable ocean canvas with mouse/touch dragging, wheel/pinch zoom, camera buttons, and direct landmark inspection. The 1,000-recipe Thousand Paths catalog and settlement simulation remain active.
+The Living Settlement deepens the autonomous miniature world with visible building stages, settler jobs and routines, naturally strengthening footpaths, crop cycles, night lights and chimney smoke, shoreline boats, richer structure/resident inspection, camera bookmarks and discovery flyovers, a development timeline, a Village Founded milestone, and individually numbered discovery cards. The 1,000-recipe Thousand Paths catalog remains active.
 
 ## Deploy
 

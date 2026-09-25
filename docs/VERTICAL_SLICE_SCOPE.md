@@ -39,3 +39,7 @@ At the player's explicit request, this milestone begins Phase 2 and supersedes t
 # v0.7.0 — Living Diorama
 
 This milestone replaces direct character control with a spectator camera. The world progresses through discoveries and autonomous settlement behavior; the player pans and zooms across a larger island/ocean view and taps revealed landmarks for contextual information. It does not add manual city-building, unit orders, or simulation micromanagement.
+
+# v0.8.0 — The Living Settlement
+
+This milestone makes development legible without giving the player direct control over inhabitants. It adds autonomous jobs, construction staging, growing paths, crop/boat/home ambience, resident and structure inspection, camera bookmarks, discovery flyovers, a saved event timeline, a Village Founded milestone, and stable numbers on every journal card. It intentionally avoids pathfinding, manual work assignments, construction placement, and complex citizen needs.

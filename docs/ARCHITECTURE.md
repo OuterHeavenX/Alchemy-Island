@@ -44,3 +44,7 @@ The first 85 recipes remain the handcrafted progression foundation. `scripts/gen
 # Living diorama camera (v0.7)
 
 The Canvas renderer now uses an independent camera `{x, y, zoom}` rather than centering the world on a player avatar. Pointer Events provide one-finger/mouse panning and two-finger pinch zoom; wheel and dedicated camera buttons cover desktop and accessible tap controls. Screen coordinates are inverted through the current Canvas transform for direct landmark hit-testing. Settlement inhabitants follow autonomous routes, while discoveries continue to reveal structures and environmental effects without requiring character movement.
+
+# Living settlement simulation (v0.8)
+
+The simulation remains deliberately lightweight and deterministic. Runtime settler records expose current position and activity for direct inspection without adding pathfinding or individual save objects. Existing settlement resources determine population and path strength; discovery timestamps drive eight-second construction reveals and the development timeline. Camera flyovers use a short cubic easing interpolation, and bookmarks target fixed world-space points. Houses, crops, smoke, lights, boats, and work routines are drawn from the existing Canvas clock without additional timers or asset downloads.
