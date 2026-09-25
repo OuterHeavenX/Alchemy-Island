@@ -36,3 +36,7 @@ The Canvas renderer derives atmosphere from a lightweight client-side time cycle
 # Settlement layer (v0.5)
 
 Settlement state is a small saved object containing population, four bounded resources, the last simulation timestamp, and milestone completion. Ten-second deterministic ticks derive production from existing discoveries and world effects; returning players receive a bounded catch-up rather than an unbounded offline simulation. Settler motion is visual and route-based, avoiding pathfinding or agent-AI cost. The painted island base is a single compressed browser asset beneath the existing dynamic objects.
+
+# Expanded recipe catalog (v0.6)
+
+The first 85 recipes remain the handcrafted progression foundation. `scripts/generate_expansion.mjs` deterministically produces 915 additional named discoveries with unique commutative ingredient pairs. The generated JSON is committed so the browser has no runtime generation cost. Validation requires exactly 1,000 unique pairs, 1,000 unique results, and complete reachability from the four primordial elements.

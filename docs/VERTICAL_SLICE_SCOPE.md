@@ -31,3 +31,7 @@ This polish milestone deepens the existing vertical slice without expanding the 
 # v0.5.0 — First Settlement
 
 This milestone turns the visible structures into a compact community loop. The slice supports up to six inhabitants, four readable settlement resources, automatic work routines tied to discovered landmarks, population growth, night-time campfire gatherings, a settlement overview, and a sustainability milestone. It intentionally excludes manual production chains, construction grids, complex needs, and city-scale simulation.
+
+# v0.6.0 — Thousand Paths
+
+At the player's explicit request, this milestone begins Phase 2 and supersedes the original 85-recipe vertical-slice ceiling. The original handcrafted tree remains intact and 915 deterministic, named, dependency-reachable recipes extend it to exactly 1,000. Search, category filtering, and a substantially larger mobile alchemy workspace keep the expanded library usable.

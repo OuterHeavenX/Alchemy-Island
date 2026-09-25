@@ -1,6 +1,6 @@
-# Alchemy Island — First Settlement v0.5.0
+# Alchemy Island — Thousand Paths v0.6.0
 
-A complete, static browser game about combining four primordial elements across 85 discoveries and watching a lonely island grow into the beginnings of civilization.
+A complete, static browser game about combining four primordial elements across 1,000 discoveries and watching a lonely island grow into the beginnings of civilization.
 
 ## Play online
 
@@ -30,7 +30,7 @@ Progress saves automatically in browser `localStorage`. Use Settings → Reset S
 
 Approach a discovered landmark and press **E** (or tap the contextual Inspect button) to learn how it changed the island. The game can also be installed from supported browsers and continues working offline after its first successful load.
 
-First Settlement adds a painted island, roaming inhabitants, food/water/timber/spirit resources, visible daily work routines, population growth, a settlement overview, and a sustainability milestone. The Living Island systems—day/night atmosphere, weather, fireflies, animated walking, construction reveals, and the landmark map—remain active.
+Thousand Paths expands the data-driven recipe tree to exactly 1,000 reachable combinations and adds discovery search plus a near-full-screen mobile alchemy workspace. First Settlement and Living Island systems remain active.
 
 ## Deploy
 
